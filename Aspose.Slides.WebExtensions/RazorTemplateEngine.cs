@@ -40,6 +40,15 @@ namespace Aspose.Slides.WebExtensions
                 if (m_templateTypes.ContainsKey(key))
                     throw new ArgumentException(string.Format("Template \"{0}\" has been added already. Can't add a template with same key twice.", key), "key");
 
+                if (template.StartsWith("@model ")) 
+                {
+                    //RazorEngine.NetCore does not support @model
+                    template = template.Substring(template.IndexOf(Environment.NewLine) + 2);
+                }
+
+                //RazorEngine.NetCore does not support @functions
+                template = template.Replace("@functions\r\n{", "@{");
+
                 m_razorService.AddTemplate(key, template);
                 m_razorService.Compile(key, modelType);
                 m_templateTypes.Add(key, modelType);

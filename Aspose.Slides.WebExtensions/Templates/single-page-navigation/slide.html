@@ -7,7 +7,7 @@
     var slideId = "slide-" + slideNumber;
 }
     
-@helper EmitShape(IShape shape, Slide contextObject, Dictionary<IShape, Tuple<string, string, float, float, string, string, int>> slideAnimationData) 
+@{ void EmitShape(IShape shape, Slide contextObject, Dictionary<IShape, Tuple<string, string, float, float, string, string, int>> slideAnimationData) 
 {
     var margin = Model.Global.Get<int>("slideMargin");
     var origin = new Point(0, 0);
@@ -67,6 +67,7 @@
         @Include("shape", subModel)
     }  
 }
+}
     
 <div id="@slideId" class="slide master-bg" 
      data-transition-type="@contextObject.SlideShowTransition.Type"
@@ -78,20 +79,20 @@
         @foreach (var shape in contextObject.LayoutSlide.MasterSlide.Shapes)
         {
             if(shape.Placeholder == null) {
-                @EmitShape(shape, contextObject, slideAnimationData);
+                @{EmitShape(shape, contextObject, slideAnimationData);}
             }
         }
 
         @foreach (var shape in contextObject.LayoutSlide.Shapes)
         {
             if(shape.Placeholder == null) {
-                @EmitShape(shape, contextObject, slideAnimationData);
+                @{EmitShape(shape, contextObject, slideAnimationData);}
             }
         }        
         
         @foreach (var shape in contextObject.Shapes)
         {
-            @EmitShape(shape, contextObject, slideAnimationData);
+            @{EmitShape(shape, contextObject, slideAnimationData);}
         }
 
 </div>

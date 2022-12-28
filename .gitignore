@@ -15,3 +15,5 @@ _ReSharper*/
 *.userprefs
 packages/
 *.gitattributes
+.vs/
+old/

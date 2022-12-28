@@ -6,7 +6,7 @@
     int slideNumber = SlideHelper.GetVisibleSlideNumber(contextObject);
 }
 
-@helper EmitShape(IShape shape, Slide contextObject, bool animateTransitions, int slideNumber) 
+@{ void EmitShape(IShape shape, Slide contextObject, bool animateTransitions, int slideNumber) 
 {
     var margin = Model.Global.Get<int>("slideMargin");
     var origin = new Point(margin, 0);
@@ -47,6 +47,7 @@
         @Include("shape", subModel)
     }  
 }
+}
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -61,20 +62,20 @@
             @foreach (var shape in contextObject.LayoutSlide.MasterSlide.Shapes)
             {
                 if(shape.Placeholder == null) {
-                    @EmitShape(shape, contextObject, animateTransitions, slideNumber);
+                    @{EmitShape(shape, contextObject, animateTransitions, slideNumber);}
                 }
             }
 
             @foreach (var shape in contextObject.LayoutSlide.Shapes)
             {
                 if(shape.Placeholder == null) {
-                    @EmitShape(shape, contextObject, animateTransitions, slideNumber);
+                    @{EmitShape(shape, contextObject, animateTransitions, slideNumber);}
                 }
             }        
             
             @foreach (var shape in contextObject.Shapes)
             {
-                @EmitShape(shape, contextObject, animateTransitions, slideNumber);
+                @{EmitShape(shape, contextObject, animateTransitions, slideNumber);}
             }
         </div>
         

@@ -9,7 +9,7 @@
     var slideHeight = contextObject.SlideSize.Size.Height;
 }
 
-
+var animateTransitions = @animateTransitions;
 var currentVisiblePage = 1;
 var maxVisiblePage = @pagesCount;
 var frameWidth = @slideWidth;
@@ -28,7 +28,7 @@ var exitTimelineIterationCounter = {};
 
 $(document).ready(function(){
       
-    if (@animateTransitions) {
+    if (animateTransitions) {
         InitTransitions();
     }
 });
@@ -2893,7 +2893,7 @@ function ShowNext() {
         var prevSlideId = '#slide-' + currentVisiblePage++;
         var slideId = '#slide-' + currentVisiblePage;
         
-        if (@animateTransitions)
+        if (animateTransitions)
             PrepareAndPlayTransition(slideId, prevSlideId);
     }
 }
@@ -2904,7 +2904,7 @@ function ShowPrev() {
         var prevSlideId = '#slide-' + currentVisiblePage--;
         var slideId = '#slide-' + currentVisiblePage;
         
-        if (@animateTransitions)
+        if (animateTransitions)
             PrepareAndPlayTransition(slideId, prevSlideId);
     }
 }

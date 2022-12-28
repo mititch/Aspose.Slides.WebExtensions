@@ -1,4 +1,4 @@
-# Aspose.Slides.WebExtensions – new Aspose.Slides HTML Export System
+# Aspose.Slides.WebExtensions – Port to .NET Core
 
 * [Introduction](#introduction)
 * [Main Components](#main-components)
